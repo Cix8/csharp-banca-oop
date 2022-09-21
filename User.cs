@@ -6,7 +6,7 @@
 
 public class User
 {
-    public int Id { get; set; }
+    public int Id { get; protected set; }
     public string Name { get; set; }
     public string Surname { get; set; }
     public string FiscalCode { get; set; }

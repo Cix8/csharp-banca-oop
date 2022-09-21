@@ -18,9 +18,9 @@ public class Bank
     public static int currentUserId = 0;
 
     public static int currentLoanId = 0;
-    public string Name { get; set; }
-    public List<User> Users { get; set; }
-    public List<Loan> Loans { get; set; }
+    public string Name { get; protected set; }
+    public List<User> Users { get; protected set; }
+    public List<Loan> Loans { get; protected set; }
 
     public Bank(string name)
     {

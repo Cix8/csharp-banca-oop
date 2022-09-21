@@ -7,12 +7,12 @@
 //una data fine.
 public class Loan
 {
-    public int Id { get; set; }
-    public User User { get; set; }
-    public int Amount { get; set; }
-    public int Installment { get; set; }
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
+    public int Id { get; protected set; }
+    public User User { get; protected set; }
+    public int Amount { get; protected set; }
+    public int Installment { get; protected set; }
+    public DateTime StartDate { get; protected set; }
+    public DateTime EndDate { get; protected set; }
 
     public Loan(User user, int amount, int installment)
     {
