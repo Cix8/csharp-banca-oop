@@ -32,8 +32,9 @@ public class Bank
         Loan testLoan1 = new Loan(testUser1, 10000, 300);
         Loan testLoan2 = new Loan(testUser2, 20000, 650);
         Loan testLoan3 = new Loan(testUser1, 15000, 300, DateTime.Now.ToString(), "30-10-2026");
-        Loan testLoan4 = new Loan(testUser1, 25000, 350, DateTime.Now.ToString(), "30-09-2028");
-        this.Loans = new List<Loan> { testLoan1, testLoan2, testLoan3, testLoan4 };
+        Loan testLoan4 = new Loan(testUser2, 15000, 300, "15-06-2019", "30-10-2022");
+        Loan testLoan5 = new Loan(testUser1, 25000, 350, "10-08-2018", "21-09-2022");
+        this.Loans = new List<Loan> { testLoan1, testLoan2, testLoan3, testLoan4, testLoan5 };
     }
 
     public User GetUserBy(int id)
@@ -99,25 +100,37 @@ public class Bank
     {
         List<Loan> theseLoans = this.FindLoansBy(fiscalCode);
         List<int> installmentsCounter = new List<int>();
+
+        //Il conteggio tiene conto anche del giorno del mese, ovvero se la scadenza della rata è ogni 30 del mese ed oggi siamo al 21 viene considerata come restante anche la scadenza del corrente mese
+        
         foreach (Loan loan in theseLoans)
         {
             int totRemaingInstallment = 0;
             int currentMonth = DateTime.Now.Month;
             int currentYear = DateTime.Now.Year;
+            int currentDay = DateTime.Now.Day;
             int endMonth = loan.EndDate.Month;
             int endYear = loan.EndDate.Year;
+            int endDay = loan.EndDate.Day;
 
             if(currentYear < endYear)
             {
                 int yearsDiff = endYear - currentYear;
                 int months = 12 * yearsDiff;
                 int monthsDiff = endMonth - currentMonth;
-                months = months + monthsDiff;
+                int dayDiff = currentDay < endDay ? 1 : 0;
+                months = months + monthsDiff + dayDiff;
                 totRemaingInstallment += months;
-            } else if (currentYear == endYear)
+            } else if (currentYear == endYear && currentMonth != endMonth)
             {
                 int monthsDiff = endMonth - currentMonth;
-                totRemaingInstallment += monthsDiff;
+                int dayDiff = currentDay < endDay ? 1 : 0;
+                totRemaingInstallment += monthsDiff + dayDiff;
+            } else if (currentYear == endYear && 
+                currentMonth == endMonth && 
+                currentDay < endDay)
+            {
+                totRemaingInstallment += 1;
             }
 
             installmentsCounter.Add(totRemaingInstallment);
