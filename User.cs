@@ -7,10 +7,10 @@
 public class User
 {
     public int Id { get; protected set; }
-    public string Name { get; set; }
-    public string Surname { get; set; }
-    public string FiscalCode { get; set; }
-    public int Salary { get; set; }
+    public string Name { get; internal set; }
+    public string Surname { get; internal set; }
+    public string FiscalCode { get; internal set; }
+    public int Salary { get; internal set; }
 
     public User(string name, string surname, string fiscalCode)
     {

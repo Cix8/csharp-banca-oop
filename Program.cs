@@ -48,7 +48,7 @@ foreach(User user in myBank.Users)
         if(loan != null)
         {
             Console.Write(" Totale ");
-            Console.Write(" Tot Rate ");
+            Console.Write(" Imp. Rata ");
             Console.Write("  Data Inizio ");
             Console.Write("   Data Fine ");
             Console.Write("   Rate Restanti ");
