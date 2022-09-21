@@ -36,4 +36,30 @@ int userLoansCounter = myBank.CountUserLoans("PPOFNC50P98F158Q");
 
 List<int> totRemaingInstallments = myBank.CounterRemainingInstallment("PPOFNC50P98F158Q");
 
-return;
+foreach(User user in myBank.Users)
+{
+    Console.WriteLine($"Sintesi dei prestiti collegati a {user.Name} {user.Surname}: (tot: {myBank.CountUserLoans(user.FiscalCode)})");
+    Console.WriteLine();
+    List<Loan> theseUserLoans = myBank.FindLoansBy(user.FiscalCode);
+    List<int> remainingInstallments = myBank.CounterRemainingInstallment(user.FiscalCode);
+    for (int i = 0; i < theseUserLoans.Count; i++)
+    {
+        Loan loan = theseUserLoans[i];
+        if(loan != null)
+        {
+            Console.Write(" Totale ");
+            Console.Write(" Tot Rate ");
+            Console.Write("  Data Inizio ");
+            Console.Write("   Data Fine ");
+            Console.Write("   Rate Restanti ");
+            Console.WriteLine();
+            Console.Write(" " + loan.Amount + " ");
+            Console.Write("   " + loan.Installment + " ");
+            Console.Write("      " + loan.StartDate.ToString("dd/MM/yyyy") + " ");
+            Console.Write("    " + loan.EndDate.ToString("dd/MM/yyyy") + " ");
+            Console.Write("      " + remainingInstallments[i] + " ");
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+    }
+}

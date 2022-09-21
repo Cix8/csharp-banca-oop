@@ -24,4 +24,15 @@ public class Loan
         this.StartDate = DateTime.Parse("21-09-2022");
         this.EndDate = DateTime.Parse("30-11-2025");
     }
+
+    public Loan(User user, int amount, int installment, string startDate, string endDate)
+    {
+        Bank.currentLoanId++;
+        this.Id = Bank.currentLoanId;
+        this.User = user;
+        this.Amount = amount;
+        this.Installment = installment;
+        this.StartDate = DateTime.Parse(startDate);
+        this.EndDate = DateTime.Parse(endDate);
+    }
 }
