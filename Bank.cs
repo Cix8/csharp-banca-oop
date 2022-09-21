@@ -94,12 +94,13 @@ public class Bank
         return this.FindLoansBy(fiscalCode).Count();
     }
 
-    public int CounterRemainingInstallment(string fiscalCode)
+    public List<int> CounterRemainingInstallment(string fiscalCode)
     {
-        int totRemaingInstallment = 0;
         List<Loan> theseLoans = this.FindLoansBy(fiscalCode);
+        List<int> installmentsCounter = new List<int>();
         foreach (Loan loan in theseLoans)
         {
+            int totRemaingInstallment = 0;
             int currentMonth = DateTime.Now.Month;
             int currentYear = DateTime.Now.Year;
             int endMonth = loan.EndDate.Month;
@@ -117,7 +118,10 @@ public class Bank
                 int monthsDiff = endMonth - currentMonth;
                 totRemaingInstallment += monthsDiff;
             }
+
+            installmentsCounter.Add(totRemaingInstallment);
         }
-        return totRemaingInstallment;
+
+        return installmentsCounter;
     }
 }
