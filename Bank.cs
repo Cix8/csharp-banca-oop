@@ -93,4 +93,31 @@ public class Bank
     {
         return this.FindLoansBy(fiscalCode).Count();
     }
+
+    public int CounterRemainingInstallment(string fiscalCode)
+    {
+        int totRemaingInstallment = 0;
+        List<Loan> theseLoans = this.FindLoansBy(fiscalCode);
+        foreach (Loan loan in theseLoans)
+        {
+            int currentMonth = DateTime.Now.Month;
+            int currentYear = DateTime.Now.Year;
+            int endMonth = loan.EndDate.Month;
+            int endYear = loan.EndDate.Year;
+
+            if(currentYear < endYear)
+            {
+                int yearsDiff = endYear - currentYear;
+                int months = 12 * yearsDiff;
+                int monthsDiff = endMonth - currentMonth;
+                months = months + monthsDiff;
+                totRemaingInstallment += months;
+            } else if (currentYear == endYear)
+            {
+                int monthsDiff = endMonth - currentMonth;
+                totRemaingInstallment += monthsDiff;
+            }
+        }
+        return totRemaingInstallment;
+    }
 }

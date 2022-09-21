@@ -11,8 +11,8 @@ public class Loan
     public User User { get; set; }
     public int Amount { get; set; }
     public int Installment { get; set; }
-    public string StartDate { get; set; }
-    public string EndDate { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
 
     public Loan(User user, int amount, int installment)
     {
@@ -21,7 +21,7 @@ public class Loan
         this.User = user;
         this.Amount = amount;
         this.Installment = installment;
-        this.StartDate = "21-09-2022";
-        this.EndDate = "30-11-2025";
+        this.StartDate = DateTime.Parse("21-09-2022");
+        this.EndDate = DateTime.Parse("30-11-2025");
     }
 }

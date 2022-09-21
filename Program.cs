@@ -34,4 +34,4 @@ List<Loan> userLoans = myBank.FindLoansBy("PPOFNC50P98F158Q");
 
 int userLoansCounter = myBank.CountUserLoans("PPOFNC50P98F158Q");
 
-return;
+int totRemaingInstallments = myBank.CounterRemainingInstallment("PPOFNC50P98F158Q");
