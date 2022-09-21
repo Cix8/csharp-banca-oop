@@ -31,7 +31,8 @@ public class Bank
         this.Users = new List<User> {testUser1, testUser2, testUser3};
         Loan testLoan1 = new Loan(testUser1, 10000, 300);
         Loan testLoan2 = new Loan(testUser2, 20000, 650);
-        this.Loans = new List<Loan> { testLoan1, testLoan2 };
+        Loan testLoan3 = new Loan(testUser1, 15000, 500);
+        this.Loans = new List<Loan> { testLoan1, testLoan2, testLoan3 };
     }
 
     public User GetUserBy(int id)
@@ -65,5 +66,31 @@ public class Bank
             searchResult.FiscalCode = fiscalCode != "" ? fiscalCode : searchResult.FiscalCode;
             searchResult.Salary = salary != -1 ? salary : searchResult.Salary;
         }
+    }
+
+    public void AddNewLoan(Loan loan)
+    {
+        this.Loans.Add(loan);
+    }
+
+    public List<Loan> FindLoansBy(string fiscalCode)
+    {
+        List<Loan> userLoans = new List<Loan>();
+        if(fiscalCode != "")
+        {
+            foreach(Loan loan in this.Loans)
+            {
+                if (loan.User.FiscalCode == fiscalCode)
+                {
+                    userLoans.Add(loan);
+                }
+            }
+        }
+        return userLoans;
+    }
+
+    public int CountUserLoans(string fiscalCode)
+    {
+        return this.FindLoansBy(fiscalCode).Count();
     }
 }
