@@ -33,4 +33,37 @@ public class Bank
         Loan testLoan2 = new Loan(testUser2, 20000, 650);
         this.Loans = new List<Loan> { testLoan1, testLoan2 };
     }
+
+    public User GetUserBy(int id)
+    {
+        foreach (User user in this.Users)
+        {
+            if(user.Id == id)
+            {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public void AddNewUser(User user)
+    {
+        if(user != null)
+        {
+            this.Users.Add(user);
+        }
+    }
+
+    public void ModifyUserData(int id, string name = "", string surname = "", string fiscalCode = "", int salary = -1)
+    {
+        User searchResult = this.GetUserBy(id);
+
+        if(searchResult != null)
+        {
+            searchResult.Name = name != "" ? name : searchResult.Name;
+            searchResult.Surname = surname != "" ? surname : searchResult.Surname;
+            searchResult.FiscalCode = fiscalCode != "" ? fiscalCode : searchResult.FiscalCode;
+            searchResult.Salary = salary != -1 ? salary : searchResult.Salary;
+        }
+    }
 }

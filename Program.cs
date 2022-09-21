@@ -27,3 +27,5 @@
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
 Bank myBank = new Bank("La Banca dei poveri");
+
+myBank.ModifyUserData(1, "Ciccio");
