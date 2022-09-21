@@ -19,6 +19,18 @@ public class Bank
 
     public static int currentLoanId = 0;
     public string Name { get; set; }
-    public List<User> users { get; set; }
-    public List<Loan> loans { get; set; }
+    public List<User> Users { get; set; }
+    public List<Loan> Loans { get; set; }
+
+    public Bank(string name)
+    {
+        this.Name = name;
+        User testUser1 = new User("Pippo", "Franco", "PPOFNC50P98F158Q");
+        User testUser2 = new User("Lollobrigida", "Gina", "LBRGNA50P98F158Q");
+        User testUser3 = new User("Verne", "Giulio", "VRNGLI50P98F158Q");
+        this.Users = new List<User> {testUser1, testUser2, testUser3};
+        Loan testLoan1 = new Loan(testUser1, 10000, 300);
+        Loan testLoan2 = new Loan(testUser2, 20000, 650);
+        this.Loans = new List<Loan> { testLoan1, testLoan2 };
+    }
 }

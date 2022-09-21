@@ -26,4 +26,4 @@
 //Bonus:
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
-Console.WriteLine();
+Bank myBank = new Bank("La Banca dei poveri");

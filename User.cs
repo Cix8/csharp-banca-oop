@@ -10,5 +10,15 @@ public class User
     public string Name { get; set; }
     public string Surname { get; set; }
     public string FiscalCode { get; set; }
-    public string Salary { get; set; }
+    public int Salary { get; set; }
+
+    public User(string name, string surname, string fiscalCode)
+    {
+        Bank.currentUserId++;
+        this.Id = Bank.currentUserId;
+        this.Name = name;
+        this.Surname = surname;
+        this.FiscalCode = fiscalCode;
+        this.Salary = 3000;
+    }
 }
