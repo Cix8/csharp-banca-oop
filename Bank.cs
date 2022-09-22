@@ -34,7 +34,8 @@ public class Bank
         Loan testLoan3 = new Loan(testUser1, 15000, 300, DateTime.Now.ToString(), "30-10-2026");
         Loan testLoan4 = new Loan(testUser2, 15000, 300, "15-06-2019", "30-10-2022");
         Loan testLoan5 = new Loan(testUser1, 25000, 350, "10-08-2018", "21-09-2022");
-        this.Loans = new List<Loan> { testLoan1, testLoan2, testLoan3, testLoan4, testLoan5 };
+        Loan testLoan6 = new Loan(testUser1, 50000, 750, "23-09-2021");
+        this.Loans = new List<Loan> { testLoan1, testLoan2, testLoan3, testLoan4, testLoan5, testLoan6 };
     }
 
     public User GetUserBy(int id)

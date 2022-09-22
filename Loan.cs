@@ -35,4 +35,21 @@ public class Loan
         this.StartDate = DateTime.Parse(startDate);
         this.EndDate = DateTime.Parse(endDate);
     }
+
+    public Loan(User user, int amount, int installment, string startDate)
+    {
+        Bank.currentLoanId++;
+        this.Id = Bank.currentLoanId;
+        this.User = user;
+        this.Amount = amount;
+        this.Installment = installment;
+        this.StartDate = DateTime.Parse(startDate);
+        this.EndDate = CalculateEndDate(this.StartDate);
+    }
+
+    private DateTime CalculateEndDate(DateTime startDate)
+    {
+        int totMonths = (int)this.Amount / this.Installment;
+        return this.StartDate.AddMonths(totMonths);
+    }
 }
